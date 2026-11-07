@@ -84,6 +84,7 @@
       padding: 0 16px;
     }
 
+    /* Header with Clean Normal 'VARSE' Logo */
     header {
       position: sticky;
       top: 0;
@@ -586,7 +587,7 @@
     }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* Official App Rules & Clean Footer */
+    /* Clean, Professional App Footer (No Gaudy Colors) */
     footer {
       margin-top: auto;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -618,13 +619,16 @@
       color: var(--neon-cyan);
     }
     .footer-dev-tag {
-      font-size: 0.88rem;
-      font-weight: 800;
+      font-size: 0.82rem;
+      font-weight: 600;
       letter-spacing: 0.8px;
       margin-bottom: 6px;
-      background: linear-gradient(135deg, #ffd700, #00f5d4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #94a3b8;
+    }
+    .footer-dev-tag span {
+      color: #00f5d4;
+      font-weight: 800;
+      text-shadow: 0 0 10px rgba(0, 245, 212, 0.4);
     }
     .app-version-badge {
       font-size: 0.72rem;
@@ -863,7 +867,7 @@
         <p><strong style="color:#fff;">1. Original Attribution:</strong> यह एप्लिकेशन Lucky A.S द्वारा डेवलप की गई है। सभी फीचर्स पर्सनल एवं क्रिएटिव उपयोग के लिए पूरी तरह मुफ़्त हैं।</p>
         <p><strong style="color:#fff;">2. Content Integrity:</strong> जनरेट की गई शायरी और बनाई गई इमेजेस पर यूजर का पूरा अधिकार रहता है। किसी भी अनैतिक या गैर-कानूनी सामग्री को बढ़ावा नहीं दिया जाता।</p>
         <p><strong style="color:#fff;">3. Privacy Policy:</strong> आपकी अपलोड की गई तस्वीरें केवल आपके ब्राउज़र में लोकली प्रोसेस होती हैं। कोई भी फोटो सर्वर पर स्टोर नहीं की जाती।</p>
-        <p><strong style="color:#fff;">4. Creator Connect:</strong> किसी भी सुझाव या सवाल के लिए क्रिएटर से टेलीग्राम हैंडल <strong>@anand_anthropic</strong> पर संपर्क करें[span_1](start_span)[span_1](end_span)。</p>
+        <p><strong style="color:#fff;">4. Creator Connect:</strong> किसी भी सुझाव या सवाल के लिए क्रिएटर से टेलीग्राम हैंडल <strong>@anand_anthropic</strong> पर संपर्क करें।</p>
       </div>
     </div>
   </div>
@@ -881,7 +885,7 @@
 
   <div id="toast"><i class="ri-check-line"></i> <span id="toast-msg">Copied!</span></div>
 
-  <!-- Professional App Footer -->
+  <!-- Sleek, High-End Software App Footer -->
   <footer>
     <div class="container">
       <div class="footer-brand">ASVARSE STUDIO</div>
@@ -890,7 +894,7 @@
         <a id="open-privacy-link">Privacy Policy</a>
         <a href="https://t.me/anand_anthropic" target="_blank">Creator: @anand_anthropic</a>
       </div>
-      <div class="footer-dev-tag">Developed by 亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗</div>
+      <div class="footer-dev-tag">Developed by <span>亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗</span></div>
       <div class="app-version-badge">Version 3.2.0 (Official Build Stable)</div>
     </div>
   </footer>
@@ -1220,7 +1224,7 @@
     buildMegaDatabase();
 
     // --- 2. STATE ---
-    const STORAGE_KEY = "asvarse_favs_v23";
+    const STORAGE_KEY = "asvarse_favs_v24";
     let currentCategory = "ALL";
     let searchQuery = "";
     let pageSize = 30;
@@ -1528,7 +1532,7 @@
 
       ctx.shadowColor = "transparent";
 
-      // 4. Premium Signature Watermark: 亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗 (Frosted Glass Pill with Dual Gold & Cyan)
+      // 4. Premium Signature Watermark: 亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗 (Frosted Glass Pill with Subtle Cyan)
       ctx.save();
       const tagText = "亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗";
       ctx.font = "800 20px 'Noto Sans Devanagari', 'Outfit', sans-serif";
@@ -1537,19 +1541,15 @@
       const tagX = width - tagWidth - 40;
       const tagY = height - tagHeight - 40;
 
-      ctx.fillStyle = "rgba(6, 2, 12, 0.82)";
+      ctx.fillStyle = "rgba(6, 2, 12, 0.85)";
       ctx.beginPath();
       ctx.roundRect(tagX, tagY, tagWidth, tagHeight, 10);
       ctx.fill();
-      ctx.strokeStyle = "rgba(255, 215, 0, 0.4)";
+      ctx.strokeStyle = "rgba(0, 245, 212, 0.45)";
       ctx.lineWidth = 1.2;
       ctx.stroke();
 
-      const tagGrad = ctx.createLinearGradient(tagX, 0, tagX + tagWidth, 0);
-      tagGrad.addColorStop(0, "#ffd700");
-      tagGrad.addColorStop(1, "#00f5d4");
-
-      ctx.fillStyle = tagGrad;
+      ctx.fillStyle = "#00f5d4";
       ctx.textAlign = "center";
       ctx.fillText(tagText, tagX + (tagWidth / 2), tagY + 26);
       ctx.restore();
