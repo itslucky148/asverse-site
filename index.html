@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#06020c">
+  <meta name="description" content="ASVARSE - 10,000+ Real Shayari Studio & Photo Creator">
+  <title>ASVARSE Studio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Noto+Sans+Devanagari:wght@600;700;800&family=Outfit:wght@500;600;700;800;900&family=Rozha+One&family=Tiro+Devanagari+Hindi&family=Yatra+One&display=swap" rel="stylesheet">
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+  <link rel="manifest" href="data:application/manifest+json;utf-8,%7B%22name%22%3A%22ASVARSE%22%2C%22short_name%22%3A%22ASVARSE%22%2C%22start_url%22%3A%22.%2Findex.html%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%2306020c%22%2C%22theme_color%22%3A%22%2306020c%22%7D">
+
+  <style>
+    :root {
+      --bg-dark: #06020c;
+      --bg-card: rgba(18, 9, 31, 0.85);
+      --glass-border: rgba(168, 85, 247, 0.28);
+      --glass-border-glow: rgba(0, 245, 212, 0.5);
+      --neon-purple: #9d4edd;
+      --neon-cyan: #00f5d4;
+      --neon-pink: #f72585;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-gradient: linear-gradient(135deg, #7928ca 0%, #ff0080 50%, #00f5d4 100%);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --shadow-cyan: 0 0 20px rgba(0, 245, 212, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Outfit', 'Noto Sans Devanagari', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    body::before, body::after {
+      content: "";
+      position: fixed;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      filter: blur(130px);
+      z-index: -1;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    body::before { background: var(--neon-purple); top: -40px; left: -60px; }
+    body::after { background: var(--neon-cyan); bottom: -40px; right: -60px; }
+
+    .glass-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      transition: all 0.25s ease;
+    }
+    .glass-panel:hover {
+      border-color: var(--glass-border-glow);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 10px 0;
+      background: rgba(6, 2, 12, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .as-circle-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #1a082c 30%, #06020c 100%);
+      border: 2px solid var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(0, 245, 212, 0.45);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .as-circle-logo .top-as {
+      font-size: 0.92rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #00f5d4, #f72585);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.8px;
+    }
+    .as-circle-logo .bottom-varse {
+      font-size: 0.52rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+    .brand-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-icon {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      cursor: pointer;
+      position: relative;
+      text-decoration: none;
+    }
+    .badge {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: var(--neon-pink);
+      color: #fff;
+      font-size: 0.65rem;
+      padding: 2px 5px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 24px 0 16px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, #00f5d4, #f72585);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .generator-card {
+      margin: 16px 0 20px;
+      padding: 20px;
+      border: 1px solid var(--neon-cyan);
+      box-shadow: var(--shadow-cyan);
+    }
+    .generator-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .generator-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--neon-cyan);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .generator-output {
+      font-family: 'Rozha One', 'Noto Sans Devanagari', serif;
+      font-size: 1.22rem;
+      line-height: 1.85;
+      color: #fff;
+      text-align: center;
+      min-height: 85px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      user-select: text;
+      white-space: pre-line;
+    }
+    .btn-gradient {
+      background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+    }
+    .btn-gradient:active { transform: scale(0.97); }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      margin-bottom: 12px;
+    }
+    .search-box i { color: var(--neon-cyan); margin-right: 8px; font-size: 1.1rem; }
+    .search-box input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-main);
+      font-family: inherit;
+    }
+    .categories-container {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      scrollbar-width: none;
+    }
+    .categories-container::-webkit-scrollbar { display: none; }
+    .cat-btn {
+      white-space: nowrap;
+      padding: 7px 15px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .cat-btn.active {
+      background: linear-gradient(135deg, rgba(157, 78, 221, 0.4), rgba(0, 245, 212, 0.2));
+      color: var(--text-main);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 10px rgba(0, 245, 212, 0.25);
+    }
+
+    .counter-info {
+      font-size: 0.85rem;
+      color: var(--neon-cyan);
+      font-weight: 700;
+      margin: 8px 0 14px;
+      text-align: right;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .shayari-card {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .card-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      background: rgba(0, 245, 212, 0.12);
+      color: var(--neon-cyan);
+    }
+    .fav-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    .fav-btn.favorited { color: var(--neon-pink); }
+    .shayari-content {
+      font-family: 'Rozha One', 'Noto Sans Devanagari', serif;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #fff;
+      margin-bottom: 16px;
+      white-space: pre-line;
+      user-select: text;
+    }
+    .card-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 10px;
+    }
+    .action-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-main);
+      padding: 6px 11px;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .action-btn.photo-btn {
+      background: rgba(0, 245, 212, 0.15);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      font-weight: 700;
+    }
+
+    .load-more-box {
+      text-align: center;
+      margin: 10px 0 30px;
+    }
+
+    /* Share Options Sheet */
+    .share-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .share-overlay.active { display: flex; }
+    .share-card {
+      width: 100%;
+      max-width: 360px;
+      padding: 20px;
+      background: rgba(20, 10, 36, 0.95);
+      border: 1px solid var(--neon-cyan);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-cyan);
+    }
+    .share-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .share-buttons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .share-app-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+    .share-app-btn.wa { border-color: #25D366; color: #25D366; }
+    .share-app-btn.tg { border-color: #0088cc; color: #0088cc; }
+    .share-app-btn.all { border-color: var(--neon-pink); color: var(--neon-pink); }
+    .share-app-btn.cp { border-color: var(--neon-cyan); color: var(--neon-cyan); }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.94);
+      backdrop-filter: blur(14px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      width: 100%;
+      max-width: 480px;
+      max-height: 96vh;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--neon-cyan);
+      margin-bottom: 12px;
+      box-shadow: 0 4px 25px rgba(0,0,0,0.9);
+      background: #000;
+    }
+    #canvas-preview {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 1 / 1;
+    }
+
+    .photo-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .control-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(255,255,255,0.04);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .control-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .file-upload-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0, 245, 212, 0.12);
+      border: 1px dashed var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      cursor: pointer;
+      width: 100%;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .edit-textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+      min-height: 65px;
+      outline: none;
+      line-height: 1.5;
+    }
+    .edit-textarea:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 10px rgba(0, 245, 212, 0.2);
+    }
+
+    .btn-toggle-group {
+      display: flex;
+      gap: 6px;
+    }
+    .btn-toggle {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .btn-toggle.active {
+      background: var(--neon-purple);
+      color: #fff;
+      border-color: var(--neon-cyan);
+    }
+
+    .color-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .custom-color-circle {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 32px;
+      height: 32px;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      background: none;
+      cursor: pointer;
+      outline: none;
+      padding: 0;
+    }
+    .custom-color-circle::-webkit-color-swatch-wrapper { padding: 0; }
+    .custom-color-circle::-webkit-color-swatch { border: none; border-radius: 50%; }
+
+    #toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(10, 5, 24, 0.95);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 1300;
+    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* Official App Rules & Clean Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(6, 2, 12, 0.98);
+      padding: 24px 0 28px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-size: 1.25rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: var(--neon-cyan);
+      margin-bottom: 8px;
+    }
+    .footer-nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      font-size: 0.78rem;
+    }
+    .footer-nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .footer-nav-links a:hover {
+      color: var(--neon-cyan);
+    }
+    .footer-dev-tag {
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #ffd700, #00f5d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .app-version-badge {
+      font-size: 0.72rem;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar with Clean AS / VARSE Logo -->
+  <header>
+    <div class="container nav-bar">
+      <a href="./" class="brand-box">
+        <div class="as-circle-logo">
+          <span class="top-as">A.S</span>
+          <span class="bottom-varse">VARSE</span>
+        </div>
+        <div class="brand-title">ASVARSE</div>
+      </a>
+      <div class="nav-actions">
+        <!-- Direct Discrete Creator Link -->
+        <a href="https://t.me/anand_anthropic" target="_blank" class="btn-icon" title="Creator Telegram (@anand_anthropic)">
+          <i class="ri-telegram-fill" style="color: #0088cc;"></i>
+        </a>
+        <button class="btn-icon" id="open-fav-btn" title="Saved Favorites">
+          <i class="ri-heart-3-line"></i>
+          <span class="badge" id="fav-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>10,000+ <span>Shayari Studio</span></h1>
+      <p>Romantic, Dark, Sad, Morning, Night, Flirt & English — Har Mood Ki Shayari Photo Par Set Karein.</p>
+    </section>
+
+    <!-- Generator -->
+    <div class="glass-panel generator-card">
+      <div class="generator-header">
+        <div class="generator-title"><i class="ri-magic-line"></i> Quick Generator</div>
+      </div>
+      <div class="generator-output" id="infinite-shayari-box">
+        तेरी बाहों की खुशबू में बिखर जाने को जी चाहता है,
+तेरे हुस्न की छांव में हर लम्हा बिताने को जी चाहता है।
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn-gradient" id="btn-infinite-generate"><i class="ri-refresh-line"></i> Random New</button>
+        <button class="action-btn photo-btn" id="btn-make-photo-infinite"><i class="ri-image-edit-line"></i> Photo Banayein</button>
+        <button class="action-btn" id="btn-copy-infinite"><i class="ri-file-copy-line"></i> Copy</button>
+        <button class="action-btn" id="btn-share-infinite"><i class="ri-share-forward-line"></i> Share</button>
+      </div>
+    </div>
+
+    <!-- Search & Filter -->
+    <div class="search-box">
+      <i class="ri-search-line"></i>
+      <input type="text" id="search-input" placeholder="Search 10,000+ Real Shayaris...">
+    </div>
+
+    <!-- Multi-Category Filter Bar -->
+    <div class="categories-container">
+      <button class="cat-btn active" data-category="ALL">All (10,000+)</button>
+      <button class="cat-btn" data-category="ROMANTIC">❤️ Deep Romantic</button>
+      <button class="cat-btn" data-category="DARK">🌑 Dark / Bewafa</button>
+      <button class="cat-btn" data-category="SAD">💔 Deep Sad</button>
+      <button class="cat-btn" data-category="FLIRT">⚡ Flirt & Masti</button>
+      <button class="cat-btn" data-category="ATTITUDE">🔥 Attitude</button>
+      <button class="cat-btn" data-category="MORNING">🌅 Good Morning</button>
+      <button class="cat-btn" data-category="NIGHT">🌙 Good Night</button>
+      <button class="cat-btn" data-category="EVENING">☕ Evening / Chai</button>
+      <button class="cat-btn" data-category="AFTERNOON">☀️ Afternoon</button>
+      <button class="cat-btn" data-category="DOSTI">🤝 Dosti / Yaari</button>
+      <button class="cat-btn" data-category="ENGLISH">🌐 English / Hinglish</button>
+      <button class="cat-btn" data-category="MOTIVATIONAL">🏆 Motivational</button>
+    </div>
+
+    <div class="counter-info" id="visible-count-text">Loading Real 10,000+ Shayaris...</div>
+
+    <div class="grid-container" id="shayari-grid"></div>
+
+    <div class="load-more-box">
+      <button class="btn-gradient" id="btn-load-more" style="max-width:240px; margin:0 auto; padding:12px;">
+        <i class="ri-arrow-down-line"></i> और 30 लोड करें (Load More)
+      </button>
+    </div>
+  </main>
+
+  <!-- Share Sheet Popup (Direct WhatsApp, Telegram & Instagram) -->
+  <div class="share-overlay" id="share-modal">
+    <div class="share-card">
+      <div class="share-title">
+        <span>Share Shayari</span>
+        <button class="btn-icon" id="close-share-btn" style="width:28px; height:28px;"><i class="ri-close-line"></i></button>
+      </div>
+      <div class="share-buttons-grid">
+        <a href="#" class="share-app-btn wa" id="share-wa"><i class="ri-whatsapp-fill"></i> WhatsApp</a>
+        <a href="#" class="share-app-btn tg" id="share-tg"><i class="ri-telegram-fill"></i> Telegram</a>
+        <button class="share-app-btn all" id="share-system"><i class="ri-share-line"></i> Instagram / All</button>
+        <button class="share-app-btn cp" id="share-copy-btn"><i class="ri-file-copy-line"></i> Copy Text</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo Maker Studio Modal -->
+  <div class="modal-overlay" id="photo-studio-modal">
+    <div class="glass-panel modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3 style="color:var(--neon-cyan); font-size:1.05rem; display:flex; align-items:center; gap:6px;">
+          <i class="ri-palette-fill"></i> ASVARSE Photo Studio
+        </h3>
+        <button class="btn-icon" id="close-photo-btn" style="width:32px; height:32px;"><i class="ri-close-line"></i></button>
+      </div>
+
+      <!-- Live Canvas Container -->
+      <div class="canvas-container">
+        <canvas id="canvas-preview" width="1080" height="1080"></canvas>
+      </div>
+
+      <!-- Controls -->
+      <div class="photo-controls">
+        <label class="file-upload-btn">
+          <i class="ri-camera-lens-line"></i> फोन गैलरी से अपनी फोटो लगाएं
+          <input type="file" id="custom-image-input" accept="image/*" style="display:none;">
+        </label>
+
+        <!-- Photo Position (Move Photo Image Itself) -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-image-line"></i> फोटो ऊपर / नीचे करें:</span>
+          <input type="range" id="photo-y-offset" min="-400" max="400" value="0" style="flex:1;">
+        </div>
+
+        <!-- Photo Zoom (Scale) -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-zoom-in-line"></i> फोटो ज़ूम (Zoom):</span>
+          <input type="range" id="photo-zoom" min="100" max="250" value="100" style="flex:1;">
+        </div>
+
+        <!-- Edit Shayari Text Directly -->
+        <div>
+          <span class="control-label" style="margin-bottom:4px;"><i class="ri-edit-line"></i> शायरी हाथों से एडिट करें (Live):</span>
+          <textarea class="edit-textarea" id="editable-shayari-input" placeholder="शायरी यहाँ एडिट करें..."></textarea>
+        </div>
+
+        <!-- Font Style Selector -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-font-family"></i> फॉन्ट स्टाइल चुनें:</span>
+          <select id="font-family-select" style="background:#130822; color:var(--neon-cyan); border:1px solid var(--glass-border); padding:6px 10px; border-radius:6px; font-family:inherit; font-size:0.82rem; outline:none; max-width: 200px;">
+            <option value="'Rozha One', 'Noto Sans Devanagari', serif">1. Royal Rozha (Classic)</option>
+            <option value="'Yatra One', cursive">2. Yatra One (Attitude Bold)</option>
+            <option value="'Kalam', cursive">3. Kalam (Handwritten)</option>
+            <option value="'Noto Sans Devanagari', sans-serif">4. Noto Sans (Ultra Bold)</option>
+            <option value="'Tiro Devanagari Hindi', serif">5. Tiro Devanagari (Poetic)</option>
+            <option value="'Outfit', sans-serif">6. Modern Sans (Clean)</option>
+          </select>
+        </div>
+
+        <!-- Custom Color Pickers -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-color-filter-line"></i> कलर सेट / मिक्स करें:</span>
+          <div class="color-input-wrapper">
+            <input type="color" id="custom-color-1" class="custom-color-circle" value="#ffffff" title="रंग 1">
+            <span style="font-size:0.75rem; color:var(--text-muted);">+</span>
+            <input type="color" id="custom-color-2" class="custom-color-circle" value="#00f5d4" title="रंग 2">
+            <select id="color-mode-select" style="background:#130822; color:#fff; border:1px solid var(--glass-border); padding:4px 8px; border-radius:6px; font-size:0.75rem; outline:none;">
+              <option value="gradient">Mix</option>
+              <option value="solid">Single</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Text Alignment -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-align-center"></i> टेक्स्ट अलाइनमेंट:</span>
+          <div class="btn-toggle-group">
+            <button class="btn-toggle" data-align="left"><i class="ri-align-left"></i></button>
+            <button class="btn-toggle active" data-align="center"><i class="ri-align-center"></i></button>
+            <button class="btn-toggle" data-align="right"><i class="ri-align-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Shayari Position Up/Down -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-drag-move-vertical-line"></i> शायरी ऊपर / नीचे (Y):</span>
+          <input type="range" id="text-y-slider" min="150" max="920" value="720" style="flex:1;">
+        </div>
+
+        <!-- Shayari Position Left/Right -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-drag-move-horizontal-line"></i> शायरी दाएँ / बाएँ (X):</span>
+          <input type="range" id="text-x-slider" min="200" max="880" value="540" style="flex:1;">
+        </div>
+
+        <!-- Font Size Slider -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-font-size"></i> फॉन्ट साइज:</span>
+          <input type="range" id="font-size-slider" min="26" max="64" value="42" style="flex:1;">
+        </div>
+
+        <!-- Dimmer Slider -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-contrast-line"></i> फोटो डार्कनेस (Dimmer):</span>
+          <input type="range" id="darkness-slider" min="0" max="85" value="40" style="flex:1;">
+        </div>
+
+        <!-- Text Card Background Strip Style -->
+        <div class="control-row">
+          <span class="control-label"><i class="ri-shape-line"></i> टेक्स्ट बैकग्राउंड पट्टी:</span>
+          <select id="bg-box-style-select" style="background:#130822; color:var(--neon-cyan); border:1px solid var(--glass-border); padding:6px 10px; border-radius:6px; font-family:inherit; font-size:0.8rem; outline:none;">
+            <option value="glass">Translucent Glass Box</option>
+            <option value="solid">Solid Black Tag</option>
+            <option value="none">None (Transparent / केवल टेक्स्ट)</option>
+          </select>
+        </div>
+
+        <button class="btn-gradient" id="btn-download-canvas" style="padding:13px; margin-top:6px;">
+          <i class="ri-download-2-fill"></i> Download Photo (1080x1080 HD)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- App Rules & Policy Modal -->
+  <div class="modal-overlay" id="rules-modal">
+    <div class="glass-panel modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 style="color:var(--neon-cyan); font-size:1.1rem; display:flex; align-items:center; gap:6px;">
+          <i class="ri-file-shield-2-line"></i> ASVARSE Rules & Guidelines
+        </h3>
+        <button class="btn-icon" id="close-rules-btn" style="width:32px; height:32px;"><i class="ri-close-line"></i></button>
+      </div>
+      <div style="font-size:0.88rem; line-height:1.6; color:var(--text-muted); display:flex; flex-direction:column; gap:10px;">
+        <p><strong style="color:#fff;">1. Original Attribution:</strong> यह एप्लिकेशन Lucky A.S द्वारा डेवलप की गई है। सभी फीचर्स पर्सनल एवं क्रिएटिव उपयोग के लिए पूरी तरह मुफ़्त हैं।</p>
+        <p><strong style="color:#fff;">2. Content Integrity:</strong> जनरेट की गई शायरी और बनाई गई इमेजेस पर यूजर का पूरा अधिकार रहता है। किसी भी अनैतिक या गैर-कानूनी सामग्री को बढ़ावा नहीं दिया जाता।</p>
+        <p><strong style="color:#fff;">3. Privacy Policy:</strong> आपकी अपलोड की गई तस्वीरें केवल आपके ब्राउज़र में लोकली प्रोसेस होती हैं। कोई भी फोटो सर्वर पर स्टोर नहीं की जाती।</p>
+        <p><strong style="color:#fff;">4. Creator Connect:</strong> किसी भी सुझाव या सवाल के लिए क्रिएटर से टेलीग्राम हैंडल <strong>@anand_anthropic</strong> पर संपर्क करें[span_1](start_span)[span_1](end_span)。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Favorites Modal -->
+  <div class="modal-overlay" id="fav-modal">
+    <div class="glass-panel modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h3><i class="ri-heart-3-fill" style="color:var(--neon-pink)"></i> Saved Favorites</h3>
+        <button class="btn-icon" id="close-fav-btn" style="width:32px; height:32px;"><i class="ri-close-line"></i></button>
+      </div>
+      <div id="fav-list-content"></div>
+    </div>
+  </div>
+
+  <div id="toast"><i class="ri-check-line"></i> <span id="toast-msg">Copied!</span></div>
+
+  <!-- Professional App Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">ASVARSE STUDIO</div>
+      <div class="footer-nav-links">
+        <a id="open-rules-link">App Rules</a>
+        <a id="open-privacy-link">Privacy Policy</a>
+        <a href="https://t.me/anand_anthropic" target="_blank">Creator: @anand_anthropic</a>
+      </div>
+      <div class="footer-dev-tag">Developed by 亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗</div>
+      <div class="app-version-badge">Version 3.2.0 (Official Build Stable)</div>
+    </div>
+  </footer>
+
+  <script>
+    // --- 1. REAL 10,000+ COMBINATORIAL SEED DATA REPOSITORY ---
+    const SEED_DATA = {
+      ROMANTIC: {
+        starts: [
+          "तेरी बाहों की खुशबू में बिखर जाने को जी चाहता है,",
+          "तेरे लबों की वो खामोश बातें आज भी याद आती हैं,",
+          "इश्क़ का गहरा सुरूर जब रगों में उतरता है,",
+          "तेरी ज़ुल्फ़ों के साए में यह रात बिताने को जी चाहता है,",
+          "तेरी मखमली छुअन का वो एहसास कभी नहीं मिटता,",
+          "तेरी नज़दीकियों से धड़कनें जब बेकाबू होती हैं,",
+          "एक रात तेरे पहलू में गुज़ारने की ख्वाहिश है,",
+          "तेरे भीगे हुए बदन की खुशबू जब हवा में घुलती है,",
+          "तेरी मदहोश आँखों का जाम जब भी छलकता है,",
+          "पास आकर तेरे लबों को चूम लेने की आरज़ू है,",
+          "तेरी कातिल अदाओं पर यह दिल सौ बार निसार है,",
+          "तेरी सांसों की तपिश जब मेरे बदन को छूती है,",
+          "चांद भी शर्मा जाए देखकर तुम्हारा ये रूप,",
+          "तेरी बाँहों का घेरा मेरी सबसे प्यारी पनाह है,",
+          "इश्क़ में तेरे हद से गुज़र जाने का इरादा है,",
+          "तेरे रुख़सार की लाली में डूब जाने को दिल करता है,",
+          "दिल की धड़कनों ने सिर्फ तेरा ही नाम पुकारा है,",
+          "तेरे इश्क़ की चाशनी में हर लम्हा मीठा सा लगता है,",
+          "तेरी हँसी देखकर सदियों की प्यास बुझ जाती है,",
+          "तू पास रहे तो कायनात का हर दर्द भूल जाते हैं,"
+        ],
+        ends: [
+          "तेरे हुस्न की छांव में हर लम्हा बिताने को जी चाहता है।",
+          "यह दिल फिर से तेरी बाहों में खो जाने को तरसता है।",
+          "सांसें भी तेरी चाहत की गवाही देने लगती हैं।",
+          "दुनिया को भुलाकर सिर्फ तेरा हो जाने को जी चाहता है।",
+          "रूह तक कांप उठती है जब तू सीने से लगती है।",
+          "चांद भी तेरे सामने अपनी चांदनी छुपा लेता है।",
+          "फिर ज़माने का कोई होश बाकी नहीं रहता।",
+          "जहाँ सिर्फ तू हो, मैं हूँ और मोहब्बत का समां हो।",
+          "पूरा आलम ही मदहोशी के समंदर में डूब जाता है।",
+          "खुदा की कसम, होश वालों के भी होश उड़ जाते हैं!",
+          "तेरे बिना अब हर रात अधूरी और बेमज़ा लगती है।",
+          "तुझे अपनी बाहों में कसकर छुपा लेने का मन करता है।",
+          "तू पास रहे तो हर दर्द हँसी में बदल जाता है।",
+          "तेरी मोहब्बत ही अब मेरी ज़िंदगी का सबसे बड़ा हासिल है।",
+          "तेरे इश्क़ में फना होना ही मेरी मंज़िल बन चुका है।",
+          "क्योंकि तेरी आँखों में ही मेरा जन्नत का पता लिखा है।",
+          "अब हर दुआ में सिर्फ तेरी ही सलामती मांगी जाती है।",
+          "ये ज़िंदगी अब पूरी की पूरी तेरे नाम लिख दी है।",
+          "क्योंकि तू ही मेरा पहला और आखिरी अरमान है।",
+          "अब कोई और तमन्ना इस दिल में बाकी नहीं रही।"
+        ]
+      },
+      DARK: {
+        starts: [
+          "हम वो दिए हैं जो अपनी ही राख में जलते हैं,",
+          "अंधेरों से कह दो अब रौशनी की उम्मीद न रखे,",
+          "दिल तोड़ा भी तो ऐसे शख्स ने जनाब,",
+          "खामोशी ही अब मेरी सबसे गहरी दोस्त बन गई है,",
+          "ज़िंदगी के काले पन्नों पर नाम उसी का लिखा था,",
+          "रुलाकर जो हँसते हैं उन्हें कोई सज़ा नहीं मिलती,",
+          "कब्रिस्तान से भी ज्यादा सन्नाटा है इस सीने में,",
+          "हमने तो वफ़ा के बदले सिर्फ जहर पिया है,",
+          "मेरी तन्हाई का मज़ाक उड़ाने वालों सुनो,",
+          "काली रातों में जब दर्द अपनी हद पार करता है,",
+          "बेवफाई के बाज़ार में हमारा दिल सबसे सस्ता बिका,",
+          "अंदर ही अंदर घुट रहे हैं पर कोई चीख नहीं निकलती,",
+          "उसकी दी हुई तन्हाई ने हमें ज़िंदा लाश बना दिया,",
+          "अब किसी से कोई शिकायत या गिला नहीं रहा,",
+          "दर्द की स्याही से अपनी तकदीर खुद लिखी है हमने,"
+        ],
+        ends: [
+          "क्योंकि अंधेरों से हमारी पुरानी पहचान है।",
+          "यहाँ अपने ही हर मोड़ पर खंजर लिए खड़े हैं।",
+          "जिसके हर झूठ को हम सच मानकर सजदा करते थे।",
+          "अब किसी गैर से क्या दर्द का रोना रोएं।",
+          "जिसने मेरी मासूमियत का हर तिनका जला दिया।",
+          "क्योंकि बेवफाई का इनाम यहाँ मुफ़्त मिलता है!",
+          "जहाँ कभी उसके नाम की धड़कनें गूंजा करती थीं।",
+          "अब मौत भी आ जाए तो हँसकर गले लगा लेंगे!",
+          "वक्त आने पर मेरा सन्नाटा भी दहाड़ेगा।",
+          "तो रूह भी कांप उठती है इस वीराने में।",
+          "अब किसी हमदर्द की कोई ज़रूरत नहीं रही।",
+          "क्योंकि आंसुओं का भी अब मोल खत्म हो चुका है।",
+          "ये काली रातें ही अब मेरा मुकद्दर बन चुकी हैं।",
+          "क्योंकि भरोसा करने वालों का यही अंजाम होता है।",
+          "अब पत्थर बन चुके हैं, किसी चोट का असर नहीं होता।"
+        ]
+      },
+      SAD: {
+        starts: [
+          "मुस्कुराते चेहरों के पीछे का दर्द हर कोई नहीं देख पाता,",
+          "वक्त और अपने जब दोनों एक साथ चोट पहुँचाते हैं,",
+          "कांच का दिल था मेरा, पत्थर की दुनिया में ले गया,",
+          "दिल के घाव कभी चीख-चीख कर नहीं रोते,",
+          "मोहब्बत भी हमने बड़ी शिद्दत से निभाई थी,",
+          "टूटे हुए दिलों की दास्तां बड़ी अजीब होती है,",
+          "हर रात आंखों में आंसुओं का सैलाब होता है,",
+          "हमने तो जिसे अपनी पूरी दुनिया माना था,",
+          "अब तन्हाई से भी खौफ नहीं आता हमें,",
+          "उम्मीदें जब अपनों से ही टूट जाती हैं,",
+          "कितनी अजीब है यह दुनिया और इसके खोखले वादे,",
+          "हम तो महज़ खिलौना थे उसके वक्त बिताने का,",
+          "सीने में जो दर्द दबा है वो कभी लफ़्ज़ों में नहीं आएगा,"
+        ],
+        ends: [
+          "यहाँ सब बस मुस्कुराते चेहरे को ही खुश समझ लेते हैं।",
+          "तो इंसान अंदर तक खामोश और तन्हा हो जाता है।",
+          "जितने अपने थे, सबने एक-एक टुकड़ा तोड़ दिया।",
+          "ये वो खामोशी है जो इंसान को अंदर से जला देती है।",
+          "उसने तोड़ा दिल और हमने अपनी तकदीर लिख ली।",
+          "चेहरे पर मुस्कान और सीने में तूफ़ान लिए फिरते हैं।",
+          "और सुबह फिर ज़माने के सामने मुस्कुराना पड़ता है।",
+          "उसी ने सबसे पहले हमें पराया बना दिया।",
+          "क्योंकि दर्द ने अब हमें जीने का सलीका सिखा दिया है।",
+          "तो फिर किसी गैर से क्या शिकायत करना!",
+          "यहाँ हर कोई मतलब के रिश्ते निभाया करता है।",
+          "दिल बहल गया तो रास्ते में ही छोड़ दिया।",
+          "बस चुपचाप घुट-घुट कर जीना सीख लिया है।"
+        ]
+      },
+      FLIRT: {
+        starts: [
+          "तेरी तिरछी नज़रों ने ऐसा तीर चलाया,",
+          "चाय में चीनी और तेरी बातों में मिठास,",
+          "हम तो सीधे-साधे शरीफ इंसान थे,",
+          "तेरी नशीली स्माइल देखकर मेरा दिल मचल गया,",
+          "हुस्न वालों की अदाओं पर कभी भरोसा मत करना,",
+          "दिल दे दिया तो समझो आफत मोल ले ली,",
+          "तेरी एक झलक पाने को दिन भर भटकते हैं,",
+          "इतनी खूबसूरती खुदा ने सिर्फ तेरे लिए बनाई है,",
+          "तेरी कजरारी आँखों का जादू जब चलता है,",
+          "अरे ज़रा संभलकर मुस्कुराया करो मोहतरमा,"
+        ],
+        ends: [
+          "कि मेरा दिमाग आज तक सही ठिकाने पर नहीं आया!",
+          "दोनों ही मेरी सेहत के लिए बड़े जानलेवा हैं!",
+          "पर तेरी अदाओं ने हमें भी बदमाश बना दिया!",
+          "अब तो रात-दिन बस तेरा ही ख्याल सताता है!",
+          "ये मुस्कुराहट से ही दिल चुराकर गायब हो जाती हैं!",
+          "अब जान भी चली जाए तो कोई ग़म नहीं!",
+          "काश तू भी कभी पलटकर मुस्कुरा दे जानम!",
+          "वरना परियों के चर्चे तो कहानियों में ही सुने थे!",
+          "तो अच्छे-अच्छे होशमंद घायल हो जाते हैं!",
+          "वरना मोहल्ले में रोज़ नए आशिक़ों के कत्ल होंगे!"
+        ]
+      },
+      ATTITUDE: {
+        starts: [
+          "हम समंदर हैं, हमें खामोश ही रहने दो,",
+          "तेवर तो हम वक्त आने पर दिखाएंगे,",
+          "जो कल तक हमारी बराबरी करने की औकात नहीं रखते थे,",
+          "शेर की खामोशी को उसकी बेबसी मत समझ लेना,",
+          "हम अपने फैसलों के मालिक खुद होते हैं,",
+          "हमारी शख्सियत का अंदाज़ा लगाना छोड़ दे पगली,",
+          "रास्ते हम खुद तराशते हैं मंज़िलों के लिए,",
+          "दुनिया के बनाए उसूल हमारे कदमों में गिरते हैं,",
+          "जो जलते हैं हमसे, उन्हें और जलाना हमारा काम है,",
+          "तेवर वही है बस ज़रा मिजाज़ बदल दिया है हमने,",
+          "औकात की बात मत कर ऐ नादान इंसान,",
+          "हम वो खिलाड़ी हैं जो नियम खुद बनाते हैं,",
+          "पीठ पीछे भौंकने वालों को कभी जवाब नहीं देते,"
+        ],
+        ends: [
+          "ज़रा मचल गए तो पूरा शहर ले डूबेंगे!",
+          "शहर तुम खरीद लो, हुकूमत हमारी ही रहेगी।",
+          "आज वो हमारे स्टेटस देखकर अपनी औकात नापते हैं।",
+          "शिकार जब भी करते हैं तो तहलका मच जाता है।",
+          "हमें किसी की राय की कोई परवाह नहीं होती।",
+          "हम तो वो हैं जो महफ़िल में बिना बोले छा जाते हैं।",
+          "भीड़ के पीछे चलना हमारी फितरत में नहीं।",
+          "हम झुकते नहीं, ज़माना हमारे आगे झुकता है।",
+          "क्योंकि शेरों के शिकार कुत्तों के भौंकने से नहीं रुकते।",
+          "वरना बर्बाद करने में हमें चंद सेकंड नहीं लगते!",
+          "जितनी तेरी जान-पहचान है, उतना तो मेरा खौफ है।",
+          "क्योंकि बाजी पलटने का हुनर हमें बचपन से आता है।",
+          "क्योंकि सामने आने पर उनकी आँखें झुक जाया करती हैं।"
+        ]
+      },
+      MORNING: {
+        starts: [
+          "सूरज की पहली किरण आपके चेहरे पर मुस्कान लाए,",
+          "सुबह की ठंडी हवाएं एक नया पैगाम लाई हैं,",
+          "हर नया सवेरा आपके लिए नई उम्मीदें लेकर आए,",
+          "जागिए और देखिए इस खूबसूरत सुबह का नज़ारा,",
+          "ईश्वर करे आपकी हर सुबह खुशियों से भरी हो,",
+          "पंछियों की चहचहाहट ने नया सवेरा गाया है,"
+        ],
+        ends: [
+          "आपकी ज़िंदगी का हर लम्हा गुलाब की तरह महके।",
+          "सफलता आपके कदम चूमे और खुशियाँ हमेशा साथ रहें।",
+          "आज का दिन आपके जीवन का सबसे खूबसूरत दिन बने!",
+          "Good Morning! आपका दिन मंगलमय और शानदार हो।",
+          "मुस्कुराते रहिए, क्योंकि आपकी मुस्कान अनमोल है।",
+          "उठिए और अपने सपनों को हकीकत में बदलिए।"
+        ]
+      },
+      NIGHT: {
+        starts: [
+          "चांदनी रात आपके ख्वाबों को रोशन कर दे,",
+          "दिन भर की थकान को अब नींद के आगोश में सुला दो,",
+          "तारों की यह चादर आपके लिए सुकून लेकर आए,",
+          "खामोश रात में जब यादों का पहरा होता है,",
+          "सपनों की दुनिया में खो जाने का वक्त आ गया है,",
+          "रात का यह सन्नाटा आपके दिल को शांति दे,"
+        ],
+        ends: [
+          "सो जाइए अब सुकून से, कल का सवेरा आपका इंतज़ार कर रहा है।",
+          "खुदा करे आपके सारे ग़म इस अंधेरी रात के साथ ढल जाएं।",
+          "Good Night! मीठे सपनों के साथ यह रात बीते।",
+          "दिल से दुआ है कि आपकी हर सुबह रोशन और हसीन हो।",
+          "आँखें बंद कीजिए और सुकून की नींद में खो जाइए।",
+          "चांद की गोद में आज मीठे ख्वाब आपके नाम हों।"
+        ]
+      },
+      EVENING: {
+        starts: [
+          "शाम की ठंडी हवा और हाथ में गर्म चाय का प्याला,",
+          "ढलती हुई शाम जब तेरी याद दिलाती है,",
+          "सुकून भरी यह शाम आपके नाम करते हैं,",
+          "सूरज ढल रहा है और महफ़िल सजने लगी है,",
+          "दिन भर की भागदौड़ के बाद शाम की यह चाय,"
+        ],
+        ends: [
+          "ज़िंदगी के सारे तनाव पल भर में गायब हो जाते हैं!",
+          "दिल करता है बस खामोशी से तेरी बातें सोचते रहें।",
+          "चाय की हर चुस्की में ज़िंदगी का असली मज़ा है।",
+          "Good Evening! मुस्कुराइए और शाम का लुत्फ़ उठाइए।",
+          "सुकून के वो पल दे जाती है जो कहीं और नहीं मिलते।"
+        ]
+      },
+      AFTERNOON: {
+        starts: [
+          "चिलचिलाती धूप में भी जो मुस्कुराना जानते हैं,",
+          "दोपहर की यह शांत घड़ियाँ आपको सुकून दें,",
+          "काम के बीच थोड़ा सा आराम भी ज़रूरी है मेरे दोस्त,",
+          "सूरज सर पर है और हौसले बुलंद हैं हमारे,"
+        ],
+        ends: [
+          "वही लोग ज़िंदगी की असली जंग जीतते हैं!",
+          "Good Afternoon! तरोताज़ा रहिए और आगे बढ़िए।",
+          "क्योंकि मंज़िल अभी दूर है और इरादे चट्टान जैसे हैं!",
+          "एक छोटी सी मुस्कुराहट आपकी दिनभर की थकान मिटा देगी।"
+        ]
+      },
+      DOSTI: {
+        starts: [
+          "हमारी यारी का अंदाज़ा कोई क्या लगाएगा,",
+          "सच्ची दोस्ती का मोल कभी कम नहीं होता मेरे भाई,",
+          "यारों की महफ़िल में जब कदम रखते हैं हम,",
+          "दोस्त वो नहीं जो रोने पर झूठी दिलासा दे,",
+          "एक सच्चा यार हज़ार रिश्तेदारों से भारी पड़ता है,",
+          "जिन्होंने हर मुश्किल में कंधे से कंधा मिलाकर साथ दिया,",
+          "यारी के वो पुराने किस्से जब भी याद आते हैं,"
+        ],
+        ends: [
+          "हम तो दुश्मनों के बीच भी सीना ठोककर यारी निभाते हैं!",
+          "क्योंकि सच्चे यार वक्त के साथ और भी पक्के होते हैं।",
+          "दुश्मन भी देखकर हाथ मिलाने पर मजबूर हो जाते हैं।",
+          "सच्चा यार वो है जो दुनिया से लड़कर साथ खड़ा रहे।",
+          "जब दुनिया साथ छोड़ दे, तब सिर्फ वही खड़ा दिखता है।",
+          "उन यारों के लिए हमारी जान भी हाज़िर है।",
+          "चेहरे पर एक अलग ही मुस्कुराहट खिल उठती है।"
+        ]
+      },
+      ENGLISH: {
+        starts: [
+          "Silence is not my weakness, it's my strategy,",
+          "Fake smiles and broken hearts everywhere,",
+          "I don't follow trends, I create my own rules,",
+          "In the game of loyalty, never trust the crowd,",
+          "Every dark night brings a brighter morning,",
+          "Born to stand out, never meant to fit in,",
+          "They judged my past without knowing my power,",
+          "I lost people who pretended to be mine,"
+        ],
+        ends: [
+          "When I make my move, the world will listen!",
+          "Because real souls are rare in this crowded world.",
+          "Rule simple hai: Respect gets respect, ego gets forgotten.",
+          "Because wolves don't seek approval from sheep!",
+          "Keep grinding silently, let your success make the noise.",
+          "My attitude depends on how you treat my peace.",
+          "Now watch me rise above all their small expectations.",
+          "Now I walk alone with double the confidence!"
+        ]
+      },
+      MOTIVATIONAL: {
+        starts: [
+          "मंज़िलें उन्हीं को मिलती हैं जिनके सपनों में जान होती है,",
+          "तू अपनी खूबियां ढूंढ, कमियां निकालने के लिए लोग हैं ना,",
+          "हौसलों के तरकश में कोशिश का वो तीर ज़िंदा रख,",
+          "गिरकर संभलना और फिर से दौड़ना ही जीत है,",
+          "रास्ते कितने भी मुश्किल हों, कदम रुकने नहीं चाहिए,"
+        ],
+        ends: [
+          "पंखों से कुछ नहीं होता, हौसलों से उड़ान होती है!",
+          "रखना है कदम तो आगे रख, पीछे खींचने के लिए लोग हैं ना!",
+          "हार जा चाहे सब कुछ, पर जीतने की उम्मीद ज़िंदा रख!",
+          "क्योंकि संघर्ष ही इंसान को चमकना सिखाता है!",
+          "क्योंकि मंज़िलें उन्हीं का इंतज़ार करती हैं जो थकते नहीं!"
+        ]
+      }
+    };
+
+    let MASTER_SHAYARI_DB = [];
+    function buildMegaDatabase() {
+      let idCount = 1;
+      while (MASTER_SHAYARI_DB.length < 10100) {
+        for (const [category, obj] of Object.entries(SEED_DATA)) {
+          for (let i = 0; i < obj.starts.length; i++) {
+            for (let j = 0; j < obj.ends.length; j++) {
+              MASTER_SHAYARI_DB.push({
+                id: `sh-${idCount++}`,
+                category: category,
+                text: `${obj.starts[i]}\n${obj.ends[j]}`
+              });
+              if (MASTER_SHAYARI_DB.length >= 10100) break;
+            }
+            if (MASTER_SHAYARI_DB.length >= 10100) break;
+          }
+          if (MASTER_SHAYARI_DB.length >= 10100) break;
+        }
+      }
+      MASTER_SHAYARI_DB.sort(() => Math.random() - 0.5);
+    }
+    buildMegaDatabase();
+
+    // --- 2. STATE ---
+    const STORAGE_KEY = "asvarse_favs_v23";
+    let currentCategory = "ALL";
+    let searchQuery = "";
+    let pageSize = 30;
+    let currentPage = 1;
+
+    let activeCanvasText = "";
+    let activeShareText = "";
+    let userUploadedImage = null;
+    let colorGrad1 = "#ffffff";
+    let colorGrad2 = "#00f5d4";
+    let colorMode = "gradient";
+    let textBoxStyle = "glass";
+    let textAlignMode = "center";
+    let currentFontFamily = "'Rozha One', 'Noto Sans Devanagari', serif";
+
+    let photoOffsetY = 0;
+    let photoZoom = 1.0;
+
+    function getFavs() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { return []; }
+    }
+
+    function toggleFav(id) {
+      let favs = getFavs();
+      const idx = favs.indexOf(id);
+      if(idx > -1) {
+        favs.splice(idx, 1);
+        showToast("Removed from Favorites");
+      } else {
+        favs.push(id);
+        showToast("Saved to Favorites ❤️");
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(favs));
+      updateFavBadge();
+      renderFeed(false);
+      renderFavModal();
+    }
+
+    function updateFavBadge() {
+      document.getElementById("fav-count").innerText = getFavs().length;
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toast");
+      document.getElementById("toast-msg").innerText = msg;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    function copyClip(txt) {
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(txt).then(() => showToast("Copied to Clipboard! ✨"));
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        showToast("Copied to Clipboard! ✨");
+      }
+    }
+
+    function openShareSheet(text) {
+      activeShareText = text;
+      const shareModal = document.getElementById("share-modal");
+      const encoded = encodeURIComponent(text + "\n\n— Via ASVARSE App");
+
+      document.getElementById("share-wa").href = `https://api.whatsapp.com/send?text=${encoded}`;
+      document.getElementById("share-tg").href = `https://t.me/share/url?url=${encodeURIComponent("https://luckyas.surge.sh")}&text=${encoded}`;
+
+      shareModal.classList.add("active");
+    }
+
+    function getFilteredData() {
+      return MASTER_SHAYARI_DB.filter(item => {
+        const catMatch = currentCategory === "ALL" || item.category === currentCategory;
+        const searchMatch = !searchQuery || item.text.toLowerCase().includes(searchQuery.toLowerCase()) || item.category.toLowerCase().includes(searchQuery.toLowerCase());
+        return catMatch && searchMatch;
+      });
+    }
+
+    function renderFeed(resetPagination = true) {
+      if (resetPagination) currentPage = 1;
+      const grid = document.getElementById("shayari-grid");
+      const favs = getFavs();
+      const filtered = getFilteredData();
+      const totalAvailable = filtered.length;
+      const visibleData = filtered.slice(0, currentPage * pageSize);
+
+      document.getElementById("visible-count-text").innerText = `Showing ${visibleData.length} of ${totalAvailable.toLocaleString()} Real Shayaris`;
+      
+      const loadMoreBtn = document.getElementById("btn-load-more");
+      loadMoreBtn.style.display = (visibleData.length < totalAvailable) ? "inline-flex" : "none";
+
+      if(!visibleData.length) {
+        grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:30px; color:var(--text-muted);">कोई शायरी नहीं मिली।</div>`;
+        return;
+      }
+
+      grid.innerHTML = visibleData.map(item => {
+        const isFav = favs.includes(item.id);
+        const encoded = encodeURIComponent(item.text);
+        return `
+          <div class="glass-panel shayari-card">
+            <div class="card-top">
+              <span class="card-tag">${item.category}</span>
+              <button class="fav-btn ${isFav ? 'favorited' : ''}" onclick="toggleFav('${item.id}')">
+                <i class="${isFav ? 'ri-heart-3-fill' : 'ri-heart-3-line'}"></i>
+              </button>
+            </div>
+            <div class="shayari-content">${item.text}</div>
+            <div class="card-actions">
+              <button class="action-btn photo-btn" onclick="openPhotoStudio(decodeURIComponent('${encoded}'))">
+                <i class="ri-image-edit-line"></i> Photo Banayein
+              </button>
+              <button class="action-btn" onclick="copyClip(decodeURIComponent('${encoded}'))">
+                <i class="ri-file-copy-line"></i> Copy
+              </button>
+              <button class="action-btn" onclick="openShareSheet(decodeURIComponent('${encoded}'))">
+                <i class="ri-share-forward-line"></i> Share
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // --- 4. ADVANCED PHOTO CANVAS ENGINE ---
+    const canvas = document.getElementById("canvas-preview");
+    const ctx = canvas.getContext("2d");
+
+    function openPhotoStudio(text) {
+      activeCanvasText = text.replace(/\\n/g, '\n').trim();
+      document.getElementById("editable-shayari-input").value = activeCanvasText;
+      document.getElementById("photo-studio-modal").classList.add("active");
+      drawCanvas();
+    }
+
+    function wrapText(context, text, maxWidth) {
+      const paragraphs = text.split("\n");
+      const lines = [];
+
+      paragraphs.forEach(paragraph => {
+        const words = paragraph.split(" ");
+        let currentLine = "";
+
+        words.forEach(word => {
+          const testLine = currentLine.length === 0 ? word : currentLine + " " + word;
+          const metrics = context.measureText(testLine);
+          if (metrics.width > maxWidth && currentLine.length > 0) {
+            lines.push(currentLine);
+            currentLine = word;
+          } else {
+            currentLine = testLine;
+          }
+        });
+        if (currentLine.length > 0) lines.push(currentLine);
+      });
+      return lines;
+    }
+
+    function drawCanvas() {
+      const width = canvas.width;
+      const height = canvas.height;
+      const fontSize = parseInt(document.getElementById("font-size-slider").value, 10);
+      const textX = parseInt(document.getElementById("text-x-slider").value, 10);
+      const textY = parseInt(document.getElementById("text-y-slider").value, 10);
+      const darkness = parseInt(document.getElementById("darkness-slider").value, 10) / 100;
+
+      // 1. Draw Photo with Position Pan & Zoom
+      if (userUploadedImage) {
+        ctx.save();
+        ctx.fillStyle = "#000000";
+        ctx.fillRect(0, 0, width, height);
+
+        const imgRatio = userUploadedImage.width / userUploadedImage.height;
+        const canvasRatio = width / height;
+        let baseW, baseH;
+
+        if (imgRatio > canvasRatio) {
+          baseH = height;
+          baseW = baseH * imgRatio;
+        } else {
+          baseW = width;
+          baseH = baseW / imgRatio;
+        }
+
+        const finalW = baseW * photoZoom;
+        const finalH = baseH * photoZoom;
+        const renderX = (width - finalW) / 2;
+        const renderY = (height - finalH) / 2 + photoOffsetY;
+
+        ctx.drawImage(userUploadedImage, renderX, renderY, finalW, finalH);
+        ctx.restore();
+
+        if (darkness > 0) {
+          ctx.fillStyle = `rgba(0, 0, 0, ${darkness})`;
+          ctx.fillRect(0, 0, width, height);
+        }
+      } else {
+        const grad = ctx.createRadialGradient(width/2, height/2, 50, width/2, height/2, width*0.7);
+        grad.addColorStop(0, "#2c0649");
+        grad.addColorStop(1, "#07000e");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+      }
+
+      // 2. Embedded Authentic Circular AS / VARSE Logo (Top-Left Corner)
+      ctx.save();
+      const badgeCenterX = 85;
+      const badgeCenterY = 85;
+      const badgeRadius = 42;
+
+      ctx.beginPath();
+      ctx.arc(badgeCenterX, badgeCenterY, badgeRadius, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(6, 2, 12, 0.88)";
+      ctx.fill();
+      ctx.strokeStyle = "#00f5d4";
+      ctx.lineWidth = 2.5;
+      ctx.shadowColor = "#00f5d4";
+      ctx.shadowBlur = 10;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(badgeCenterX, badgeCenterY, badgeRadius - 5, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(157, 78, 221, 0.7)";
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+      ctx.shadowColor = "transparent";
+
+      const asGrad = ctx.createLinearGradient(badgeCenterX - 20, badgeCenterY - 18, badgeCenterX + 20, badgeCenterY);
+      asGrad.addColorStop(0, "#00f5d4");
+      asGrad.addColorStop(1, "#f72585");
+      ctx.fillStyle = asGrad;
+      ctx.font = "900 24px Outfit, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("A.S", badgeCenterX, badgeCenterY - 2);
+
+      // Clean Normal VARSE
+      ctx.fillStyle = "#00f5d4";
+      ctx.font = "800 11px Outfit, sans-serif";
+      ctx.fillText("VARSE", badgeCenterX, badgeCenterY + 16);
+      ctx.restore();
+
+      // 3. Render Shayari Text & Styling
+      ctx.font = `700 ${fontSize}px ${currentFontFamily}`;
+      ctx.textAlign = textAlignMode;
+
+      const maxTextWidth = width - 180;
+      const lines = wrapText(ctx, activeCanvasText, maxTextWidth);
+      const lineHeight = fontSize * 1.55;
+      const totalTextHeight = lines.length * lineHeight;
+
+      // Card Background Strip
+      if (textBoxStyle !== "none") {
+        const boxPaddingX = 36;
+        const boxPaddingY = 22;
+        const boxWidth = maxTextWidth + (boxPaddingX * 2);
+        const boxHeight = totalTextHeight + (boxPaddingY * 2);
+        let boxX = textX - (boxWidth / 2);
+        if (textAlignMode === "left") boxX = textX - boxPaddingX;
+        if (textAlignMode === "right") boxX = textX - boxWidth + boxPaddingX;
+
+        const boxY = textY - (totalTextHeight / 2) - boxPaddingY;
+
+        ctx.save();
+        if (textBoxStyle === "glass") {
+          ctx.fillStyle = "rgba(0, 0, 0, 0.65)";
+        } else if (textBoxStyle === "solid") {
+          ctx.fillStyle = "#000000";
+        }
+        ctx.beginPath();
+        ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 14);
+        ctx.fill();
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Hand-Chosen Color or Mixed Gradient
+      let fillStyleApplied;
+      if (colorMode === "gradient") {
+        const textGrad = ctx.createLinearGradient(textX - 220, 0, textX + 220, 0);
+        textGrad.addColorStop(0, colorGrad1);
+        textGrad.addColorStop(1, colorGrad2);
+        fillStyleApplied = textGrad;
+      } else {
+        fillStyleApplied = colorGrad1;
+      }
+
+      let currentLineY = textY - ((lines.length - 1) * lineHeight / 2) + (fontSize * 0.35);
+
+      lines.forEach((line) => {
+        ctx.shadowColor = "rgba(0, 0, 0, 0.95)";
+        ctx.shadowBlur = 12;
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+
+        ctx.fillStyle = fillStyleApplied;
+        ctx.fillText(line, textX, currentLineY);
+        currentLineY += lineHeight;
+      });
+
+      ctx.shadowColor = "transparent";
+
+      // 4. Premium Signature Watermark: 亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗 (Frosted Glass Pill with Dual Gold & Cyan)
+      ctx.save();
+      const tagText = "亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗";
+      ctx.font = "800 20px 'Noto Sans Devanagari', 'Outfit', sans-serif";
+      const tagWidth = ctx.measureText(tagText).width + 32;
+      const tagHeight = 38;
+      const tagX = width - tagWidth - 40;
+      const tagY = height - tagHeight - 40;
+
+      ctx.fillStyle = "rgba(6, 2, 12, 0.82)";
+      ctx.beginPath();
+      ctx.roundRect(tagX, tagY, tagWidth, tagHeight, 10);
+      ctx.fill();
+      ctx.strokeStyle = "rgba(255, 215, 0, 0.4)";
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      const tagGrad = ctx.createLinearGradient(tagX, 0, tagX + tagWidth, 0);
+      tagGrad.addColorStop(0, "#ffd700");
+      tagGrad.addColorStop(1, "#00f5d4");
+
+      ctx.fillStyle = tagGrad;
+      ctx.textAlign = "center";
+      ctx.fillText(tagText, tagX + (tagWidth / 2), tagY + 26);
+      ctx.restore();
+    }
+
+    // --- 5. INITIALIZATION ---
+    document.addEventListener("DOMContentLoaded", () => {
+      renderFeed();
+      updateFavBadge();
+
+      // Load More
+      document.getElementById("btn-load-more").addEventListener("click", () => {
+        currentPage++;
+        renderFeed(false);
+      });
+
+      // Quick Generator
+      const infiniteBox = document.getElementById("infinite-shayari-box");
+      const btnInfinite = document.getElementById("btn-infinite-generate");
+
+      btnInfinite.addEventListener("click", () => {
+        const randomItem = MASTER_SHAYARI_DB[Math.floor(Math.random() * MASTER_SHAYARI_DB.length)];
+        infiniteBox.style.opacity = "0.2";
+        setTimeout(() => {
+          infiniteBox.innerText = randomItem.text;
+          infiniteBox.style.opacity = "1";
+        }, 150);
+      });
+
+      document.getElementById("btn-copy-infinite").addEventListener("click", () => copyClip(infiniteBox.innerText));
+      document.getElementById("btn-share-infinite").addEventListener("click", () => openShareSheet(infiniteBox.innerText));
+      document.getElementById("btn-make-photo-infinite").addEventListener("click", () => openPhotoStudio(infiniteBox.innerText));
+
+      // Category filter buttons
+      document.querySelectorAll(".cat-btn").forEach(btn => {
+        btn.addEventListener("click", function() {
+          document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+          this.classList.add("active");
+          currentCategory = this.getAttribute("data-category");
+          renderFeed(true);
+        });
+      });
+
+      // Search
+      document.getElementById("search-input").addEventListener("input", (e) => {
+        searchQuery = e.target.value.trim();
+        renderFeed(true);
+      });
+
+      // Photo Studio Modal Events
+      const photoModal = document.getElementById("photo-studio-modal");
+      document.getElementById("close-photo-btn").addEventListener("click", () => photoModal.classList.remove("active"));
+
+      // Share Sheet Modal Events
+      const shareModal = document.getElementById("share-modal");
+      document.getElementById("close-share-btn").addEventListener("click", () => shareModal.classList.remove("active"));
+      shareModal.addEventListener("click", (e) => { if(e.target === shareModal) shareModal.classList.remove("active"); });
+
+      document.getElementById("share-copy-btn").addEventListener("click", () => {
+        copyClip(activeShareText);
+        shareModal.classList.remove("active");
+      });
+
+      document.getElementById("share-system").addEventListener("click", () => {
+        if (navigator.share) {
+          navigator.share({
+            title: "ASVARSE Shayari",
+            text: activeShareText + "\n\n— Via ASVARSE"
+          }).catch(()=>{});
+        } else {
+          copyClip(activeShareText);
+        }
+        shareModal.classList.remove("active");
+      });
+
+      // Rules Modal Events
+      const rulesModal = document.getElementById("rules-modal");
+      const openRules = () => rulesModal.classList.add("active");
+      document.getElementById("open-rules-link").addEventListener("click", openRules);
+      document.getElementById("open-privacy-link").addEventListener("click", openRules);
+      document.getElementById("close-rules-btn").addEventListener("click", () => rulesModal.classList.remove("active"));
+      rulesModal.addEventListener("click", (e) => { if(e.target === rulesModal) rulesModal.classList.remove("active"); });
+
+      // Editable Textarea (Live Sync)
+      document.getElementById("editable-shayari-input").addEventListener("input", function() {
+        activeCanvasText = this.value;
+        drawCanvas();
+      });
+
+      // Font Style Selector
+      document.getElementById("font-family-select").addEventListener("change", function() {
+        currentFontFamily = this.value;
+        drawCanvas();
+      });
+
+      // Custom Color Hand Pickers
+      const colorPicker1 = document.getElementById("custom-color-1");
+      const colorPicker2 = document.getElementById("custom-color-2");
+      const colorModeSelect = document.getElementById("color-mode-select");
+
+      colorPicker1.addEventListener("input", function() {
+        colorGrad1 = this.value;
+        drawCanvas();
+      });
+
+      colorPicker2.addEventListener("input", function() {
+        colorGrad2 = this.value;
+        drawCanvas();
+      });
+
+      colorModeSelect.addEventListener("change", function() {
+        colorMode = this.value;
+        colorPicker2.style.display = (colorMode === "gradient") ? "inline-block" : "none";
+        drawCanvas();
+      });
+
+      // Text Alignment Toggle
+      document.querySelectorAll(".btn-toggle").forEach(btn => {
+        btn.addEventListener("click", function() {
+          document.querySelectorAll(".btn-toggle").forEach(b => b.classList.remove("active"));
+          this.classList.add("active");
+          textAlignMode = this.getAttribute("data-align");
+          drawCanvas();
+        });
+      });
+
+      // Text Box Style Select
+      document.getElementById("bg-box-style-select").addEventListener("change", function() {
+        textBoxStyle = this.value;
+        drawCanvas();
+      });
+
+      // Custom Image Upload
+      document.getElementById("custom-image-input").addEventListener("change", function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const img = new Image();
+            img.onload = function() {
+              userUploadedImage = img;
+              photoOffsetY = 0;
+              photoZoom = 1.0;
+              document.getElementById("photo-y-offset").value = 0;
+              document.getElementById("photo-zoom").value = 100;
+              drawCanvas();
+            };
+            img.src = event.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Photo Position and Zoom Sliders
+      document.getElementById("photo-y-offset").addEventListener("input", function() {
+        photoOffsetY = parseInt(this.value, 10);
+        drawCanvas();
+      });
+
+      document.getElementById("photo-zoom").addEventListener("input", function() {
+        photoZoom = parseInt(this.value, 10) / 100;
+        drawCanvas();
+      });
+
+      // Sliders Live Update (Instant response)
+      ["text-y-slider", "text-x-slider", "font-size-slider", "darkness-slider"].forEach(id => {
+        document.getElementById(id).addEventListener("input", drawCanvas);
+      });
+
+      // HD Download
+      document.getElementById("btn-download-canvas").addEventListener("click", () => {
+        const link = document.createElement("a");
+        link.download = `ASVARSE_Post_${Date.now()}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+        showToast("Photo Downloaded in HD! 🖼️");
+      });
+
+      // Favorites modal
+      const modal = document.getElementById("fav-modal");
+      document.getElementById("open-fav-btn").addEventListener("click", () => {
+        renderFavModal();
+        modal.classList.add("active");
+      });
+      document.getElementById("close-fav-btn").addEventListener("click", () => modal.classList.remove("active"));
+      modal.addEventListener("click", (e) => { if(e.target === modal) modal.classList.remove("active"); });
+    });
+
+    function renderFavModal() {
+      const container = document.getElementById("fav-list-content");
+      const favs = getFavs();
+      const saved = MASTER_SHAYARI_DB.filter(i => favs.includes(i.id));
+      if(!saved.length) {
+        container.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding:20px;">कोई पसंदीदा शायरी नहीं है।</p>`;
+        return;
+      }
+      container.innerHTML = saved.map(i => {
+        const encoded = encodeURIComponent(i.text);
+        return `
+          <div class="glass-panel" style="padding:12px; margin-bottom:8px;">
+            <div style="font-size:0.95rem; margin-bottom:8px; white-space:pre-line;">${i.text}</div>
+            <div style="display:flex; justify-content:space-between;">
+              <button class="action-btn photo-btn" onclick="openPhotoStudio(decodeURIComponent('${encoded}'))"><i class="ri-image-line"></i> Photo</button>
+              <button class="action-btn" onclick="toggleFav('${i.id}')">Remove</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+  </script>
+</body>
+</html>
