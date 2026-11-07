@@ -10,7 +10,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Noto+Sans+Devanagari:wght@600;700;800&family=Outfit:wght@500;600;700;800;900&family=Rozha+One&family=Tiro+Devanagari+Hindi&family=Yatra+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Noto+Sans+Devanagari:wght@600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Rozha+One&family=Tiro+Devanagari+Hindi&family=Yatra+One&display=swap" rel="stylesheet">
   <!-- Remix Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
@@ -84,7 +84,7 @@
       padding: 0 16px;
     }
 
-    /* Header with Clean Normal 'VARSE' Logo */
+    /* Header */
     header {
       position: sticky;
       top: 0;
@@ -587,52 +587,129 @@
     }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-    /* Clean, Professional App Footer (No Gaudy Colors) */
+    /* --- BRANDED CYBERPUNK APP FOOTER --- */
     footer {
       margin-top: auto;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(6, 2, 12, 0.98);
-      padding: 24px 0 28px;
+      background: radial-gradient(circle at 50% 0%, #16082b 0%, #040108 100%);
+      padding: 34px 0 28px;
       text-align: center;
+      position: relative;
     }
-    .footer-brand {
-      font-size: 1.25rem;
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+    }
+    .footer-brand-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      text-decoration: none;
+    }
+    .footer-brand-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #240a3d 0%, #06020c 100%);
+      border: 1.5px solid var(--neon-cyan);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(0, 245, 212, 0.35);
+      line-height: 1;
+    }
+    .footer-brand-badge .f-top {
+      font-size: 0.72rem;
       font-weight: 900;
-      letter-spacing: 1.5px;
-      color: var(--neon-cyan);
-      margin-bottom: 8px;
+      background: linear-gradient(135deg, #00f5d4, #f72585);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
+    .footer-brand-badge .f-bot {
+      font-size: 0.42rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      letter-spacing: 1px;
+    }
+    .footer-brand-title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #ffffff 10%, #00f5d4 50%, #9d4edd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+    }
+
     .footer-nav-links {
       display: flex;
       justify-content: center;
-      gap: 16px;
-      margin-bottom: 12px;
+      gap: 20px;
+      margin-bottom: 16px;
       font-size: 0.78rem;
     }
     .footer-nav-links a {
-      color: var(--text-muted);
+      color: #94a3b8;
       text-decoration: none;
       cursor: pointer;
+      font-weight: 600;
       transition: color 0.2s ease;
     }
     .footer-nav-links a:hover {
       color: var(--neon-cyan);
     }
-    .footer-dev-tag {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      margin-bottom: 6px;
-      color: #94a3b8;
+
+    /* Signature Creator Pill */
+    .footer-dev-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(18, 9, 31, 0.9);
+      border: 1px solid rgba(0, 245, 212, 0.35);
+      box-shadow: 0 0 14px rgba(0, 245, 212, 0.15);
+      margin-bottom: 14px;
     }
-    .footer-dev-tag span {
-      color: #00f5d4;
+    .footer-dev-pill .dev-lbl {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+    .footer-dev-pill .dev-val {
+      font-size: 0.88rem;
       font-weight: 800;
-      text-shadow: 0 0 10px rgba(0, 245, 212, 0.4);
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #00f5d4, #f8fafc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 12px rgba(0, 245, 212, 0.45);
+    }
+
+    /* Official Copyright */
+    .footer-copyright {
+      font-size: 0.75rem;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      margin-bottom: 4px;
+    }
+    .footer-copyright strong {
+      color: #cbd5e1;
     }
     .app-version-badge {
-      font-size: 0.72rem;
-      color: #64748b;
+      font-size: 0.68rem;
+      color: #475569;
       font-weight: 600;
       letter-spacing: 0.5px;
     }
@@ -651,8 +728,8 @@
         <div class="brand-title">ASVARSE</div>
       </a>
       <div class="nav-actions">
-        <!-- Direct Discrete Creator Link -->
-        <a href="https://t.me/anand_anthropic" target="_blank" class="btn-icon" title="Creator Telegram (@anand_anthropic)">
+        <!-- Direct Discrete Creator Link (Only in Header) -->
+        <a href="https://t.me/anand_anthropic" target="_blank" class="btn-icon" title="Telegram Contact">
           <i class="ri-telegram-fill" style="color: #0088cc;"></i>
         </a>
         <button class="btn-icon" id="open-fav-btn" title="Saved Favorites">
@@ -867,7 +944,6 @@
         <p><strong style="color:#fff;">1. Original Attribution:</strong> यह एप्लिकेशन Lucky A.S द्वारा डेवलप की गई है। सभी फीचर्स पर्सनल एवं क्रिएटिव उपयोग के लिए पूरी तरह मुफ़्त हैं।</p>
         <p><strong style="color:#fff;">2. Content Integrity:</strong> जनरेट की गई शायरी और बनाई गई इमेजेस पर यूजर का पूरा अधिकार रहता है। किसी भी अनैतिक या गैर-कानूनी सामग्री को बढ़ावा नहीं दिया जाता।</p>
         <p><strong style="color:#fff;">3. Privacy Policy:</strong> आपकी अपलोड की गई तस्वीरें केवल आपके ब्राउज़र में लोकली प्रोसेस होती हैं। कोई भी फोटो सर्वर पर स्टोर नहीं की जाती।</p>
-        <p><strong style="color:#fff;">4. Creator Connect:</strong> किसी भी सुझाव या सवाल के लिए क्रिएटर से टेलीग्राम हैंडल <strong>@anand_anthropic</strong> पर संपर्क करें।</p>
       </div>
     </div>
   </div>
@@ -885,16 +961,36 @@
 
   <div id="toast"><i class="ri-check-line"></i> <span id="toast-msg">Copied!</span></div>
 
-  <!-- Sleek, High-End Software App Footer -->
+  <!-- Luxury Cyberpunk Footer with Authentic Branding & Copyright -->
   <footer>
     <div class="container">
-      <div class="footer-brand">ASVARSE STUDIO</div>
+      <!-- Branded Logo & Title -->
+      <a href="./" class="footer-brand-wrap">
+        <div class="footer-brand-badge">
+          <span class="f-top">A.S</span>
+          <span class="f-bot">VARSE</span>
+        </div>
+        <div class="footer-brand-title">ASVARSE</div>
+      </a>
+
+      <!-- Navigation Links -->
       <div class="footer-nav-links">
         <a id="open-rules-link">App Rules</a>
         <a id="open-privacy-link">Privacy Policy</a>
-        <a href="https://t.me/anand_anthropic" target="_blank">Creator: @anand_anthropic</a>
       </div>
-      <div class="footer-dev-tag">Developed by <span>亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗</span></div>
+
+      <!-- Signature Creator Badge -->
+      <div>
+        <div class="footer-dev-pill">
+          <span class="dev-lbl">Developed by</span>
+          <span class="dev-val">亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗</span>
+        </div>
+      </div>
+
+      <!-- Official Clean Copyright -->
+      <div class="footer-copyright">
+        © 2026 <strong>ASVARSE STUDIO</strong> • All Rights Reserved.
+      </div>
       <div class="app-version-badge">Version 3.2.0 (Official Build Stable)</div>
     </div>
   </footer>
@@ -1224,7 +1320,7 @@
     buildMegaDatabase();
 
     // --- 2. STATE ---
-    const STORAGE_KEY = "asvarse_favs_v24";
+    const STORAGE_KEY = "asvarse_favs_v28";
     let currentCategory = "ALL";
     let searchQuery = "";
     let pageSize = 30;
@@ -1761,4 +1857,4 @@
     }
   </script>
 </body>
-                                        </html>
+</html>
