@@ -174,6 +174,35 @@
       font-weight: 700;
     }
 
+    /* Topmate Direct Paid Chat Button */
+    .topmate-chat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #f72585 0%, #b5179e 50%, #7209b7 100%);
+      color: #ffffff;
+      padding: 7px 14px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid rgba(247, 37, 133, 0.6);
+      box-shadow: 0 0 14px rgba(247, 37, 133, 0.35);
+      transition: all 0.25s ease;
+    }
+    .topmate-chat-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px rgba(247, 37, 133, 0.6);
+      filter: brightness(1.1);
+    }
+    .topmate-chat-btn:active {
+      transform: scale(0.96);
+    }
+    .topmate-chat-btn i {
+      font-size: 0.95rem;
+      color: #00f5d4;
+    }
+
     .hero {
       padding: 24px 0 16px;
       text-align: center;
@@ -728,9 +757,10 @@
         <div class="brand-title">ASVARSE</div>
       </a>
       <div class="nav-actions">
-        <!-- Direct Discrete Creator Link (Only in Header) -->
-        <a href="https://t.me/anand_anthropic" target="_blank" class="btn-icon" title="Telegram Contact">
-          <i class="ri-telegram-fill" style="color: #0088cc;"></i>
+        <!-- Direct Creator Paid Chat Link (Topmate 1:1) -->
+        <a href="https://topmate.io/lucky_hacker/2399003" target="_blank" rel="noopener noreferrer" class="topmate-chat-btn" title="Chat with Creator Lucky">
+          <i class="ri-chat-voice-line"></i>
+          <span>Chat</span>
         </a>
         <button class="btn-icon" id="open-fav-btn" title="Saved Favorites">
           <i class="ri-heart-3-line"></i>
@@ -964,7 +994,6 @@
   <!-- Luxury Cyberpunk Footer with Authentic Branding & Copyright -->
   <footer>
     <div class="container">
-      <!-- Branded Logo & Title -->
       <a href="./" class="footer-brand-wrap">
         <div class="footer-brand-badge">
           <span class="f-top">A.S</span>
@@ -973,13 +1002,11 @@
         <div class="footer-brand-title">ASVARSE</div>
       </a>
 
-      <!-- Navigation Links -->
       <div class="footer-nav-links">
         <a id="open-rules-link">App Rules</a>
         <a id="open-privacy-link">Privacy Policy</a>
       </div>
 
-      <!-- Signature Creator Badge -->
       <div>
         <div class="footer-dev-pill">
           <span class="dev-lbl">Developed by</span>
@@ -987,7 +1014,6 @@
         </div>
       </div>
 
-      <!-- Official Clean Copyright -->
       <div class="footer-copyright">
         © 2026 <strong>ASVARSE STUDIO</strong> • All Rights Reserved.
       </div>
@@ -996,7 +1022,6 @@
   </footer>
 
   <script>
-    // --- 1. REAL 10,000+ COMBINATORIAL SEED DATA REPOSITORY ---
     const SEED_DATA = {
       ROMANTIC: {
         starts: [
@@ -1319,7 +1344,6 @@
     }
     buildMegaDatabase();
 
-    // --- 2. STATE ---
     const STORAGE_KEY = "asvarse_favs_v28";
     let currentCategory = "ALL";
     let searchQuery = "";
@@ -1449,7 +1473,7 @@
       }).join("");
     }
 
-    // --- 4. ADVANCED PHOTO CANVAS ENGINE ---
+    // Canvas Engine
     const canvas = document.getElementById("canvas-preview");
     const ctx = canvas.getContext("2d");
 
@@ -1491,7 +1515,6 @@
       const textY = parseInt(document.getElementById("text-y-slider").value, 10);
       const darkness = parseInt(document.getElementById("darkness-slider").value, 10) / 100;
 
-      // 1. Draw Photo with Position Pan & Zoom
       if (userUploadedImage) {
         ctx.save();
         ctx.fillStyle = "#000000";
@@ -1529,7 +1552,6 @@
         ctx.fillRect(0, 0, width, height);
       }
 
-      // 2. Embedded Authentic Circular AS / VARSE Logo (Top-Left Corner)
       ctx.save();
       const badgeCenterX = 85;
       const badgeCenterY = 85;
@@ -1560,13 +1582,11 @@
       ctx.textAlign = "center";
       ctx.fillText("A.S", badgeCenterX, badgeCenterY - 2);
 
-      // Clean Normal VARSE
       ctx.fillStyle = "#00f5d4";
       ctx.font = "800 11px Outfit, sans-serif";
       ctx.fillText("VARSE", badgeCenterX, badgeCenterY + 16);
       ctx.restore();
 
-      // 3. Render Shayari Text & Styling
       ctx.font = `700 ${fontSize}px ${currentFontFamily}`;
       ctx.textAlign = textAlignMode;
 
@@ -1575,7 +1595,6 @@
       const lineHeight = fontSize * 1.55;
       const totalTextHeight = lines.length * lineHeight;
 
-      // Card Background Strip
       if (textBoxStyle !== "none") {
         const boxPaddingX = 36;
         const boxPaddingY = 22;
@@ -1602,7 +1621,6 @@
         ctx.restore();
       }
 
-      // Hand-Chosen Color or Mixed Gradient
       let fillStyleApplied;
       if (colorMode === "gradient") {
         const textGrad = ctx.createLinearGradient(textX - 220, 0, textX + 220, 0);
@@ -1628,7 +1646,6 @@
 
       ctx.shadowColor = "transparent";
 
-      // 4. Premium Signature Watermark: 亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗 (Frosted Glass Pill with Subtle Cyan)
       ctx.save();
       const tagText = "亗 𝐋𝐔𝐂𝐊𝐘 𝐀.𝐒 亗";
       ctx.font = "800 20px 'Noto Sans Devanagari', 'Outfit', sans-serif";
@@ -1651,18 +1668,15 @@
       ctx.restore();
     }
 
-    // --- 5. INITIALIZATION ---
     document.addEventListener("DOMContentLoaded", () => {
       renderFeed();
       updateFavBadge();
 
-      // Load More
       document.getElementById("btn-load-more").addEventListener("click", () => {
         currentPage++;
         renderFeed(false);
       });
 
-      // Quick Generator
       const infiniteBox = document.getElementById("infinite-shayari-box");
       const btnInfinite = document.getElementById("btn-infinite-generate");
 
@@ -1679,7 +1693,6 @@
       document.getElementById("btn-share-infinite").addEventListener("click", () => openShareSheet(infiniteBox.innerText));
       document.getElementById("btn-make-photo-infinite").addEventListener("click", () => openPhotoStudio(infiniteBox.innerText));
 
-      // Category filter buttons
       document.querySelectorAll(".cat-btn").forEach(btn => {
         btn.addEventListener("click", function() {
           document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
@@ -1689,17 +1702,14 @@
         });
       });
 
-      // Search
       document.getElementById("search-input").addEventListener("input", (e) => {
         searchQuery = e.target.value.trim();
         renderFeed(true);
       });
 
-      // Photo Studio Modal Events
       const photoModal = document.getElementById("photo-studio-modal");
       document.getElementById("close-photo-btn").addEventListener("click", () => photoModal.classList.remove("active"));
 
-      // Share Sheet Modal Events
       const shareModal = document.getElementById("share-modal");
       document.getElementById("close-share-btn").addEventListener("click", () => shareModal.classList.remove("active"));
       shareModal.addEventListener("click", (e) => { if(e.target === shareModal) shareModal.classList.remove("active"); });
@@ -1721,7 +1731,6 @@
         shareModal.classList.remove("active");
       });
 
-      // Rules Modal Events
       const rulesModal = document.getElementById("rules-modal");
       const openRules = () => rulesModal.classList.add("active");
       document.getElementById("open-rules-link").addEventListener("click", openRules);
@@ -1729,19 +1738,16 @@
       document.getElementById("close-rules-btn").addEventListener("click", () => rulesModal.classList.remove("active"));
       rulesModal.addEventListener("click", (e) => { if(e.target === rulesModal) rulesModal.classList.remove("active"); });
 
-      // Editable Textarea (Live Sync)
       document.getElementById("editable-shayari-input").addEventListener("input", function() {
         activeCanvasText = this.value;
         drawCanvas();
       });
 
-      // Font Style Selector
       document.getElementById("font-family-select").addEventListener("change", function() {
         currentFontFamily = this.value;
         drawCanvas();
       });
 
-      // Custom Color Hand Pickers
       const colorPicker1 = document.getElementById("custom-color-1");
       const colorPicker2 = document.getElementById("custom-color-2");
       const colorModeSelect = document.getElementById("color-mode-select");
@@ -1762,7 +1768,6 @@
         drawCanvas();
       });
 
-      // Text Alignment Toggle
       document.querySelectorAll(".btn-toggle").forEach(btn => {
         btn.addEventListener("click", function() {
           document.querySelectorAll(".btn-toggle").forEach(b => b.classList.remove("active"));
@@ -1772,13 +1777,11 @@
         });
       });
 
-      // Text Box Style Select
       document.getElementById("bg-box-style-select").addEventListener("change", function() {
         textBoxStyle = this.value;
         drawCanvas();
       });
 
-      // Custom Image Upload
       document.getElementById("custom-image-input").addEventListener("change", function(e) {
         const file = e.target.files[0];
         if (file) {
@@ -1799,7 +1802,6 @@
         }
       });
 
-      // Photo Position and Zoom Sliders
       document.getElementById("photo-y-offset").addEventListener("input", function() {
         photoOffsetY = parseInt(this.value, 10);
         drawCanvas();
@@ -1810,12 +1812,10 @@
         drawCanvas();
       });
 
-      // Sliders Live Update (Instant response)
       ["text-y-slider", "text-x-slider", "font-size-slider", "darkness-slider"].forEach(id => {
         document.getElementById(id).addEventListener("input", drawCanvas);
       });
 
-      // HD Download
       document.getElementById("btn-download-canvas").addEventListener("click", () => {
         const link = document.createElement("a");
         link.download = `ASVARSE_Post_${Date.now()}.png`;
@@ -1824,7 +1824,6 @@
         showToast("Photo Downloaded in HD! 🖼️");
       });
 
-      // Favorites modal
       const modal = document.getElementById("fav-modal");
       document.getElementById("open-fav-btn").addEventListener("click", () => {
         renderFavModal();
